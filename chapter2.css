@@ -1,0 +1,2740 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+
+    background: #120b16;
+
+    color: white;
+
+    overflow-x: hidden;
+}
+
+/* =================================
+   GLOBAL MUSIC CONTROL
+================================= */
+
+.music-button {
+    position: fixed;
+    top: 22px;
+    right: 22px;
+    z-index: 2000;
+
+    width: 52px;
+    height: 52px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    border: 1px solid rgba(255, 180, 210, 0.25);
+
+    background:
+        rgba(35, 12, 28, 0.72);
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.35),
+        0 0 25px rgba(255, 80, 150, 0.12);
+
+    font-size: 22px;
+    line-height: 1;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.music-button:hover {
+    transform: scale(1.08);
+    background: rgba(255, 90, 150, 0.18);
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(255, 80, 150, 0.25);
+}
+
+.music-button:active {
+    transform: scale(0.94);
+}
+
+/* Keep the music button visually separate from normal buttons. */
+.music-button.playing {
+    animation: musicPulse 2s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+    0%, 100% {
+        box-shadow:
+            0 8px 30px rgba(0, 0, 0, 0.35),
+            0 0 18px rgba(255, 80, 150, 0.18);
+    }
+
+    50% {
+        box-shadow:
+            0 8px 30px rgba(0, 0, 0, 0.35),
+            0 0 32px rgba(255, 80, 150, 0.45);
+    }
+}
+
+/* Prevent horizontal overflow on all chapters. */
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* All chapters use normal document flow so the music
+   remains active while the user scrolls through them. */
+.hero,
+.story,
+.meaning-section,
+.tree-section,
+.reasons-section,
+.final-section {
+    position: relative;
+    width: 100%;
+}
+
+/* Better keyboard accessibility. */
+button:focus-visible {
+    outline: 2px solid #ffb6d3;
+    outline-offset: 4px;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #4b1838,
+            transparent 45%
+        ),
+        linear-gradient(
+            135deg,
+            #120b16,
+            #28101f,
+            #120b16
+        );
+}
+
+.hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    padding: 30px;
+
+    animation: fadeIn 2s ease;
+}
+
+.small-text {
+    font-size: 18px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 20px;
+
+    opacity: 0.8;
+}
+
+h1 {
+    font-size: clamp(50px, 10vw, 100px);
+
+    margin-bottom: 25px;
+
+    font-weight: normal;
+
+    text-shadow:
+        0 0 10px rgba(255, 120, 170, 0.5),
+        0 0 30px rgba(255, 120, 170, 0.3);
+}
+
+.subtitle {
+    font-size: 20px;
+
+    line-height: 1.8;
+
+    color: #f4dce7;
+
+    margin-bottom: 40px;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+button {
+    border: none;
+
+    padding: 16px 32px;
+
+    border-radius: 50px;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e83e8c,
+            #a92868
+        );
+
+    box-shadow:
+        0 10px 30px rgba(232, 62, 140, 0.3);
+
+    transition:
+        all 0.3s ease;
+}
+
+button:hover {
+    transform:
+        translateY(-4px)
+        scale(1.03);
+
+    box-shadow:
+        0 15px 40px rgba(232, 62, 140, 0.5);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+.hearts span {
+    position: absolute;
+
+    bottom: -50px;
+
+    font-size: 25px;
+
+    opacity: 0.6;
+
+    animation:
+        floatHeart 10s linear infinite;
+}
+
+.hearts span:nth-child(1) {
+    left: 10%;
+
+    animation-delay: 0s;
+}
+
+.hearts span:nth-child(2) {
+    left: 25%;
+
+    animation-delay: 2s;
+}
+
+.hearts span:nth-child(3) {
+    left: 45%;
+
+    animation-delay: 4s;
+}
+
+.hearts span:nth-child(4) {
+    left: 65%;
+
+    animation-delay: 1s;
+}
+
+.hearts span:nth-child(5) {
+    left: 80%;
+
+    animation-delay: 6s;
+}
+
+.hearts span:nth-child(6) {
+    left: 90%;
+
+    animation-delay: 3s;
+}
+
+/* =========================
+   LOVE STORY - CHAPTER ONE
+========================= */
+
+.story {
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 80px 20px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #120b16,
+            #24101e
+        );
+}
+
+.story-content {
+    width: 100%;
+
+    max-width: 850px;
+}
+
+.story-label {
+    font-size: 13px !important;
+
+    letter-spacing: 5px;
+
+    color: #e98caf !important;
+
+    margin-bottom: 15px !important;
+}
+
+.story h2 {
+    font-size: clamp(40px, 7vw, 70px);
+
+    font-weight: normal;
+
+    margin-bottom: 45px;
+}
+
+.story-card {
+    padding: 45px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.1);
+
+    border-radius: 25px;
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 20px 60px
+        rgba(0, 0, 0, 0.25);
+
+    text-align: left;
+}
+
+.story-card p {
+    font-size: 19px;
+
+    line-height: 1.9;
+
+    margin-bottom: 22px;
+
+    color: #f4dce7;
+}
+
+.story-date {
+    font-size: 24px;
+
+    color: #ffffff;
+
+    margin-bottom: 30px;
+
+    text-align: center;
+}
+
+.special-line {
+    text-align: center;
+
+    font-size: 25px !important;
+
+    color: #ffb4d2 !important;
+
+    margin: 35px 0 !important;
+}
+
+.prayer {
+    text-align: center;
+
+    font-style: italic;
+
+    font-size: 22px !important;
+
+    color: #ffd1e2 !important;
+
+    padding: 20px;
+}
+
+.ending-line {
+    text-align: center;
+
+    font-size: 23px !important;
+
+    color: #ffffff !important;
+
+    margin-top: 35px !important;
+}
+
+/* =========================
+   CHAPTER TWO
+   WHAT YOU ARE IN MY LIFE
+========================= */
+
+.meaning-section {
+    min-height: 100vh;
+
+    padding: 100px 20px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    position: relative;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #351528,
+            #120b16 65%
+        );
+}
+
+.meaning-content {
+    width: 100%;
+
+    max-width: 1100px;
+}
+
+.section-label {
+    font-size: 13px;
+
+    letter-spacing: 5px;
+
+    color: #e98caf;
+
+    margin-bottom: 15px;
+}
+
+.meaning-section h1 {
+    font-size: clamp(40px, 7vw, 70px);
+
+    font-weight: normal;
+
+    margin-bottom: 25px;
+}
+
+.intro-text {
+    font-size: 20px;
+
+    line-height: 1.8;
+
+    color: #f4dce7;
+
+    margin-bottom: 60px;
+}
+
+/* =========================
+   MEANING CARDS
+========================= */
+
+.meaning-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.meaning-card {
+    padding: 35px 25px;
+
+    border-radius: 22px;
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    transition:
+        transform 0.4s ease,
+        background 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.meaning-card:hover {
+    transform:
+        translateY(-10px);
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 20px 50px
+        rgba(0, 0, 0, 0.3);
+}
+
+.meaning-icon {
+    font-size: 42px;
+
+    margin-bottom: 20px;
+}
+
+.meaning-card h3 {
+    font-size: 23px;
+
+    font-weight: normal;
+
+    margin-bottom: 15px;
+}
+
+.meaning-card p {
+    color: #dcbfcd;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+/* =========================
+   MEANING ENDING
+========================= */
+
+.meaning-ending {
+    margin-top: 80px;
+}
+
+.meaning-ending p {
+    color: #e98caf;
+
+    font-size: 18px;
+
+    margin-bottom: 15px;
+}
+
+.meaning-ending h3 {
+    max-width: 650px;
+
+    margin: auto;
+
+    font-size: 28px;
+
+    line-height: 1.6;
+
+    font-weight: normal;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+@keyframes floatHeart {
+
+    0% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 800px) {
+
+    .meaning-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .small-text {
+        font-size: 15px;
+    }
+
+    .subtitle {
+        font-size: 17px;
+    }
+
+    button {
+        padding: 14px 25px;
+    }
+
+    .story {
+        padding: 60px 15px;
+    }
+
+    .story-card {
+        padding: 25px;
+    }
+
+    .story-card p {
+        font-size: 17px;
+    }
+
+    .special-line {
+        font-size: 21px !important;
+    }
+
+    .meaning-section {
+        padding: 70px 15px;
+    }
+
+    .meaning-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .intro-text {
+        font-size: 17px;
+    }
+
+    .meaning-ending h3 {
+        font-size: 23px;
+    }
+
+}
+/* =================================
+   CHAPTER THREE
+   MEMORY TREE
+================================= */
+
+.tree-section {
+    min-height: 100vh;
+
+    padding: 80px 20px;
+
+    display: flex;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #351528,
+            #120b16 70%
+        );
+}
+
+.tree-content {
+    width: 100%;
+
+    max-width: 1100px;
+}
+
+.tree-section h1 {
+    font-size: clamp(45px, 7vw, 75px);
+
+    font-weight: normal;
+
+    margin-bottom: 25px;
+}
+
+.tree-intro {
+    font-size: 19px;
+
+    line-height: 1.8;
+
+    color: #f4dce7;
+
+    margin-bottom: 40px;
+}
+
+/* =================================
+   TREE
+================================= */
+
+.memory-tree {
+    position: relative;
+
+    width: 700px;
+
+    height: 700px;
+
+    max-width: 100%;
+
+    margin: 20px auto 70px;
+}
+
+/* =================================
+   TREE TRUNK
+================================= */
+
+.tree-trunk {
+    position: absolute;
+
+    width: 75px;
+
+    height: 390px;
+
+    left: 50%;
+
+    bottom: 40px;
+
+    transform: translateX(-50%);
+
+    border-radius:
+        45% 45% 20% 20%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #3d1d20,
+            #70402f,
+            #3d1d20
+        );
+
+    box-shadow:
+        0 0 30px
+        rgba(120, 60, 50, 0.2);
+}
+
+/* =================================
+   BRANCHES
+================================= */
+
+.branch {
+    position: absolute;
+
+    height: 18px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #3d1d20,
+            #70402f
+        );
+
+    transform-origin: left center;
+}
+
+.branch-1 {
+    width: 230px;
+
+    left: 50%;
+
+    top: 330px;
+
+    transform:
+        rotate(-145deg);
+}
+
+.branch-2 {
+    width: 230px;
+
+    left: 50%;
+
+    top: 290px;
+
+    transform:
+        rotate(-35deg);
+}
+
+.branch-3 {
+    width: 190px;
+
+    left: 50%;
+
+    top: 235px;
+
+    transform:
+        rotate(-155deg);
+}
+
+.branch-4 {
+    width: 190px;
+
+    left: 50%;
+
+    top: 200px;
+
+    transform:
+        rotate(-25deg);
+}
+
+.branch-5 {
+    width: 150px;
+
+    left: 50%;
+
+    top: 145px;
+
+    transform:
+        rotate(-90deg);
+}
+
+/* =================================
+   TREE HEART
+================================= */
+
+.tree-heart {
+    position: absolute;
+
+    top: 65px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    font-size: 65px;
+
+    animation:
+        heartbeat 2s ease-in-out infinite;
+
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(255, 100, 150, 0.6)
+        );
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform:
+            translateX(-50%)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translateX(-50%)
+            scale(1.15);
+    }
+
+}
+
+/* =================================
+   MEMORY FLOWERS
+================================= */
+
+.memory {
+    position: absolute;
+
+    width: 58px;
+
+    height: 58px;
+
+    padding: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    border:
+        1px solid
+        rgba(255, 180, 210, 0.25);
+
+    font-size: 30px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 20px
+        rgba(255, 100, 170, 0.2);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.memory:hover {
+
+    transform:
+        scale(1.25);
+
+    box-shadow:
+        0 0 30px
+        rgba(255, 100, 170, 0.6);
+
+}
+
+/* =================================
+   FLOWER POSITIONS
+================================= */
+
+.memory-1 {
+    top: 285px;
+    left: 8%;
+}
+
+.memory-2 {
+    top: 225px;
+    left: 23%;
+}
+
+.memory-3 {
+    top: 165px;
+    left: 12%;
+}
+
+.memory-4 {
+    top: 350px;
+    right: 7%;
+}
+
+.memory-5 {
+    top: 270px;
+    right: 21%;
+}
+
+.memory-6 {
+    top: 205px;
+    right: 10%;
+}
+
+.memory-7 {
+    top: 125px;
+    left: 27%;
+}
+
+.memory-8 {
+    top: 120px;
+    right: 27%;
+}
+
+.memory-9 {
+    top: 75px;
+    left: 43%;
+}
+
+.memory-10 {
+    top: 400px;
+    left: 44%;
+}
+
+/* =================================
+   MEMORY POPUP
+================================= */
+
+.memory-popup {
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+    background:
+        rgba(10, 5, 12, 0.85);
+
+    backdrop-filter: blur(8px);
+
+    z-index: 1000;
+}
+
+.memory-popup.active {
+    display: flex;
+
+    animation:
+        popupFade 0.3s ease;
+}
+
+@keyframes popupFade {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+/* =================================
+   POPUP CONTENT
+================================= */
+
+.popup-content {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 650px;
+
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    padding: 50px 40px;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #321526,
+            #1b0d17
+        );
+
+    border:
+        1px solid
+        rgba(255, 170, 200, 0.2);
+
+    box-shadow:
+        0 30px 100px
+        rgba(0, 0, 0, 0.6);
+
+    animation:
+        popupOpen 0.4s ease;
+}
+
+@keyframes popupOpen {
+
+    from {
+        transform:
+            translateY(30px)
+            scale(0.9);
+
+        opacity: 0;
+    }
+
+    to {
+        transform:
+            translateY(0)
+            scale(1);
+
+        opacity: 1;
+    }
+
+}
+
+/* =================================
+   CLOSE BUTTON
+================================= */
+
+.popup-close {
+    position: absolute;
+
+    top: 15px;
+
+    right: 15px;
+
+    width: 40px;
+
+    height: 40px;
+
+    padding: 0;
+
+    border-radius: 50%;
+
+    font-size: 28px;
+
+    line-height: 1;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+}
+
+.popup-close:hover {
+
+    transform:
+        rotate(90deg);
+
+}
+
+/* =================================
+   POPUP TEXT
+================================= */
+
+.popup-number {
+
+    font-size: 13px;
+
+    letter-spacing: 4px;
+
+    color: #e98caf;
+
+    margin-bottom: 15px;
+}
+
+.popup-icon {
+
+    font-size: 50px;
+
+    margin-bottom: 15px;
+}
+
+.popup-content h2 {
+
+    font-size: 32px;
+
+    font-weight: normal;
+
+    margin-bottom: 25px;
+}
+
+.popup-content p {
+
+    font-size: 18px;
+
+    line-height: 2;
+
+    color: #f4dce7;
+
+    white-space: pre-line;
+
+}
+
+/* =================================
+   POPUP CLOSE ACTION
+================================= */
+
+.popup-open {
+    margin-top: 25px;
+    padding: 13px 26px;
+    font-size: 16px;
+}
+
+.popup-open:hover {
+    transform: translateY(-3px);
+}
+
+/* =================================
+   TREE ENDING
+================================= */
+
+.tree-ending {
+
+    margin-bottom: 45px;
+}
+
+.tree-ending p {
+
+    font-size: 18px;
+
+    color: #e98caf;
+
+    margin-bottom: 12px;
+}
+
+.tree-ending h2 {
+
+    font-size: 30px;
+
+    font-weight: normal;
+
+    margin-bottom: 15px;
+}
+
+.tree-ending-small {
+
+    color: #dcbfcd !important;
+
+    font-size: 16px !important;
+}
+
+.continue-button {
+    margin-top: 25px;
+    margin-bottom: 30px;
+}
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 700px) {
+
+    .tree-section {
+
+        padding:
+            60px 15px;
+
+    }
+
+    .tree-intro {
+
+        font-size: 17px;
+
+    }
+
+    .memory-tree {
+
+        height: 580px;
+
+    }
+
+    .tree-trunk {
+
+        width: 55px;
+
+        height: 330px;
+
+    }
+
+    .branch {
+
+        height: 13px;
+
+    }
+
+    .tree-heart {
+
+        top: 45px;
+
+        font-size: 50px;
+
+    }
+
+    .memory {
+
+        width: 48px;
+
+        height: 48px;
+
+        font-size: 24px;
+
+    }
+
+    .memory-1 {
+        top: 260px;
+        left: 2%;
+    }
+
+    .memory-2 {
+        top: 205px;
+        left: 20%;
+    }
+
+    .memory-3 {
+        top: 150px;
+        left: 7%;
+    }
+
+    .memory-4 {
+        top: 315px;
+        right: 2%;
+    }
+
+    .memory-5 {
+        top: 250px;
+        right: 18%;
+    }
+
+    .memory-6 {
+        top: 195px;
+        right: 6%;
+    }
+
+    .memory-7 {
+        top: 120px;
+        left: 20%;
+    }
+
+    .memory-8 {
+        top: 115px;
+        right: 20%;
+    }
+
+    .memory-9 {
+        top: 75px;
+        left: 42%;
+    }
+
+    .memory-10 {
+        top: 365px;
+        left: 40%;
+    }
+
+    .popup-content {
+
+        padding:
+            45px 25px;
+
+    }
+
+    .popup-content h2 {
+
+        font-size: 26px;
+
+    }
+
+    .popup-content p {
+
+        font-size: 16px;
+
+        line-height: 1.8;
+
+    }
+
+    .tree-ending h2 {
+
+        font-size: 24px;
+
+    }
+
+}
+/* =================================
+   CHAPTER FOUR
+   WHY I LOVE YOU
+================================= */
+
+.reasons-section {
+    min-height: 100vh;
+    padding: 100px 20px;
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 20% 10%,
+            rgba(255, 80, 150, 0.16),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 40%,
+            rgba(180, 60, 130, 0.12),
+            transparent 30%
+        ),
+        linear-gradient(
+            180deg,
+            #120b16,
+            #1e0c1b,
+            #120b16
+        );
+}
+
+.reasons-section::before {
+    content: "❤️";
+    position: absolute;
+
+    top: 8%;
+    left: 5%;
+
+    font-size: 70px;
+    opacity: 0.08;
+
+    animation: floatingLove 6s ease-in-out infinite;
+}
+
+.reasons-section::after {
+    content: "♡";
+    position: absolute;
+
+    right: 7%;
+    bottom: 10%;
+
+    font-size: 100px;
+    opacity: 0.06;
+
+    animation: floatingLove 8s ease-in-out infinite reverse;
+}
+
+.reasons-content {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+
+    position: relative;
+    z-index: 2;
+
+    text-align: center;
+}
+
+/* =================================
+   HEADING
+================================= */
+
+.reasons-section h1 {
+    font-size: clamp(48px, 9vw, 90px);
+    font-weight: normal;
+    margin-bottom: 25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #ffb6d3,
+            #ffffff
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow:
+        0 0 20px rgba(255, 100, 170, 0.25);
+}
+
+.reasons-section h1 span {
+    -webkit-text-fill-color: initial;
+}
+
+.reasons-intro {
+    max-width: 650px;
+    margin: 0 auto 60px;
+
+    font-size: 20px;
+    line-height: 1.9;
+
+    color: #f4dce7;
+}
+
+/* =================================
+   INTRO HEART MESSAGE
+================================= */
+
+.heart-message {
+    margin: 0 auto 45px;
+
+    max-width: 700px;
+
+    padding: 35px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 100, 160, 0.10),
+            rgba(255, 255, 255, 0.035)
+        );
+
+    border:
+        1px solid
+        rgba(255, 160, 200, 0.15);
+
+    box-shadow:
+        0 20px 70px
+        rgba(0, 0, 0, 0.25);
+
+    backdrop-filter: blur(12px);
+}
+
+.heart-glow {
+    font-size: 55px;
+
+    margin-bottom: 15px;
+
+    animation:
+        heartbeatReason
+        2s
+        ease-in-out
+        infinite;
+
+    filter:
+        drop-shadow(
+            0 0 18px
+            rgba(255, 80, 140, 0.7)
+        );
+}
+
+.heart-message p {
+    color: #e8ccd9;
+
+    font-size: 17px;
+
+    line-height: 1.9;
+}
+
+/* =================================
+   REASON CARD
+================================= */
+
+.reason-card {
+
+    position: relative;
+
+    margin: 35px 0;
+
+    padding: 45px;
+
+    text-align: left;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.065),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    border:
+        1px solid
+        rgba(255, 170, 205, 0.12);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0, 0, 0, 0.30);
+
+    backdrop-filter: blur(14px);
+
+    transition:
+        transform 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.reason-card:hover {
+
+    transform:
+        translateY(-8px);
+
+    border-color:
+        rgba(255, 150, 195, 0.35);
+
+    box-shadow:
+        0 30px 90px
+        rgba(255, 70, 150, 0.12);
+}
+
+/* =================================
+   REASON TOP
+================================= */
+
+.reason-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.reason-number {
+
+    font-size: 13px;
+
+    letter-spacing: 4px;
+
+    color: #e98caf;
+
+    font-weight: bold;
+}
+
+.reason-icon {
+
+    font-size: 38px;
+
+    filter:
+        drop-shadow(
+            0 0 10px
+            rgba(255, 100, 170, 0.35)
+        );
+}
+
+/* =================================
+   REASON TEXT
+================================= */
+
+.reason-card h2 {
+
+    font-size: clamp(27px, 4vw, 38px);
+
+    font-weight: normal;
+
+    color: #ffffff;
+
+    margin-bottom: 25px;
+
+    line-height: 1.3;
+}
+
+.reason-card p {
+
+    color: #e6ceda;
+
+    font-size: 18px;
+
+    line-height: 2;
+
+    margin: 0;
+}
+
+.reason-card strong {
+
+    color: #ffd0e1;
+
+}
+
+/* =================================
+   FEATURED CARD
+================================= */
+
+.reason-card.featured {
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(255, 80, 150, 0.13),
+            transparent 40%
+        ),
+        rgba(255, 255, 255, 0.045);
+
+    border:
+        1px solid
+        rgba(255, 130, 180, 0.22);
+}
+
+/* =================================
+   QUOTES
+================================= */
+
+.beautiful-quote {
+
+    margin: 25px 0;
+
+    padding: 25px 30px;
+
+    border-left:
+        3px solid
+        #e98caf;
+
+    border-radius: 0 18px 18px 0;
+
+    background:
+        rgba(255, 100, 160, 0.07);
+
+    color: #ffbfd6;
+
+    font-size: 21px;
+
+    line-height: 1.8;
+
+    font-style: italic;
+}
+
+/* =================================
+   EMOTIONAL CARD
+================================= */
+
+.reason-card.emotional {
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255, 50, 100, 0.08),
+            rgba(255, 255, 255, 0.025)
+        );
+}
+
+.realization {
+
+    display: block;
+
+    margin-top: 15px;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255, 70, 130, 0.07);
+
+    color: #ffc2d7;
+
+    font-size: 20px;
+
+    font-style: italic;
+
+    text-align: center;
+}
+
+/* =================================
+   APOLOGY
+================================= */
+
+.apology-card {
+
+    margin: 70px 0;
+
+    padding: 60px 45px;
+
+    border-radius: 35px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255, 70, 130, 0.16),
+            transparent 60%
+        ),
+        rgba(255, 255, 255, 0.035);
+
+    border:
+        1px solid
+        rgba(255, 120, 175, 0.2);
+
+    box-shadow:
+        0 30px 100px
+        rgba(255, 50, 130, 0.08);
+}
+
+.apology-heart {
+
+    font-size: 65px;
+
+    margin-bottom: 15px;
+
+    animation:
+        heartbeatReason
+        2s
+        ease-in-out
+        infinite;
+}
+
+.small-title {
+
+    font-size: 12px !important;
+
+    letter-spacing: 4px;
+
+    color: #e98caf !important;
+
+    margin-bottom: 15px !important;
+}
+
+.apology-card h2 {
+
+    font-size: 42px;
+
+    font-weight: normal;
+
+    margin-bottom: 30px;
+}
+
+.apology-card p:not(.small-title) {
+
+    max-width: 650px;
+
+    margin: auto;
+
+    font-size: 18px;
+
+    line-height: 2;
+
+    color: #ead1dd;
+}
+
+/* =================================
+   FINAL MESSAGE
+================================= */
+
+.final-reason {
+
+    padding: 70px 40px;
+
+    margin-top: 60px;
+
+    text-align: center;
+
+    border-radius: 40px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 100, 160, 0.11),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    border:
+        1px solid
+        rgba(255, 160, 200, 0.18);
+
+    box-shadow:
+        0 30px 100px
+        rgba(0, 0, 0, 0.35);
+}
+
+.final-heart {
+
+    font-size: 75px;
+
+    margin-bottom: 20px;
+
+    animation:
+        heartbeatReason
+        2s
+        ease-in-out
+        infinite;
+
+    filter:
+        drop-shadow(
+            0 0 25px
+            rgba(255, 70, 140, 0.65)
+        );
+}
+
+.final-reason h2 {
+
+    font-size: clamp(32px, 6vw, 52px);
+
+    font-weight: normal;
+
+    margin-bottom: 35px;
+}
+
+.final-reason p {
+
+    max-width: 700px;
+
+    margin: auto;
+
+    font-size: 19px;
+
+    line-height: 2;
+
+    color: #ead1dd;
+}
+
+.promise {
+
+    max-width: 600px;
+
+    margin: 35px auto;
+
+    padding: 30px;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 80, 150, 0.15),
+            rgba(255, 255, 255, 0.04)
+        );
+
+    color: #ffffff;
+
+    font-size: 26px;
+
+    line-height: 1.6;
+
+    box-shadow:
+        inset 0 0 30px
+        rgba(255, 120, 180, 0.04);
+}
+
+/* =================================
+   CONTINUE BUTTON
+================================= */
+
+.reasons-section .continue-button {
+
+    margin-top: 30px;
+
+    margin-bottom: 50px;
+
+    padding: 17px 35px;
+
+    font-size: 17px;
+}
+
+/* =================================
+   ANIMATION
+================================= */
+
+@keyframes heartbeatReason {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+
+}
+
+@keyframes floatingLove {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(-20px)
+            rotate(8deg);
+    }
+
+}
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+    .reasons-section {
+        padding: 70px 15px;
+    }
+
+    .reasons-section h1 {
+        font-size: 48px;
+    }
+
+    .reasons-intro {
+        font-size: 17px;
+    }
+
+    .heart-message {
+        padding: 28px 20px;
+    }
+
+    .reason-card {
+        padding: 30px 22px;
+        border-radius: 24px;
+    }
+
+    .reason-card h2 {
+        font-size: 27px;
+    }
+
+    .reason-card p {
+        font-size: 16px;
+        line-height: 1.85;
+    }
+
+    .beautiful-quote {
+        padding: 18px 20px;
+        font-size: 17px;
+    }
+
+    .apology-card {
+        padding: 45px 22px;
+        border-radius: 28px;
+    }
+
+    .apology-card h2 {
+        font-size: 34px;
+    }
+
+    .final-reason {
+        padding: 50px 22px;
+        border-radius: 30px;
+    }
+
+    .final-reason p {
+        font-size: 17px;
+        line-height: 1.9;
+    }
+
+    .promise {
+        padding: 25px 18px;
+        font-size: 21px;
+    }
+
+}
+/* =================================
+   FINAL CHAPTER
+================================= */
+
+.final-section {
+    min-height: 100vh;
+
+    padding: 100px 20px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            #4a1838,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(255, 80, 150, 0.12),
+            transparent 30%
+        ),
+        linear-gradient(
+            180deg,
+            #120b16,
+            #24101f,
+            #120b16
+        );
+}
+
+.final-content {
+    position: relative;
+
+    z-index: 5;
+
+    width: 100%;
+
+    max-width: 850px;
+
+    margin: auto;
+}
+
+/* =================================
+   FINAL LABEL
+================================= */
+
+.final-label {
+    font-size: 12px;
+
+    letter-spacing: 5px;
+
+    color: #e98caf;
+
+    margin-bottom: 20px;
+}
+
+/* =================================
+   FINAL HEADING
+================================= */
+
+.final-section h1 {
+    font-size: clamp(50px, 9vw, 90px);
+
+    font-weight: normal;
+
+    margin-bottom: 25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #ffb5d1,
+            #ffffff
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    text-shadow:
+        0 0 30px
+        rgba(255, 100, 170, 0.3);
+}
+
+.final-section h1 span {
+    -webkit-text-fill-color: initial;
+}
+
+.final-intro {
+    font-size: 19px;
+
+    line-height: 1.9;
+
+    color: #f4dce7;
+
+    margin-bottom: 55px;
+}
+
+/* =================================
+   LOVE LETTER CARD
+================================= */
+
+.love-letter-card {
+
+    position: relative;
+
+    padding: 60px 50px;
+
+    border-radius: 35px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.09),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    border:
+        1px solid
+        rgba(255, 180, 210, 0.2);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 30px 100px
+        rgba(0, 0, 0, 0.4);
+
+    overflow: hidden;
+}
+
+.love-letter-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+
+    height: 250px;
+
+    border-radius: 50%;
+
+    top: -130px;
+
+    right: -100px;
+
+    background:
+        rgba(255, 80, 150, 0.12);
+
+    filter: blur(20px);
+}
+
+.card-top-heart {
+
+    font-size: 65px;
+
+    margin-bottom: 15px;
+
+    animation:
+        finalHeartbeat
+        2s
+        ease-in-out
+        infinite;
+
+    filter:
+        drop-shadow(
+            0 0 20px
+            rgba(255, 70, 150, 0.7)
+        );
+}
+
+.card-small-title {
+
+    font-size: 11px !important;
+
+    letter-spacing: 4px;
+
+    color: #e98caf !important;
+
+    margin-bottom: 20px !important;
+}
+
+.love-letter-card h2 {
+
+    font-size: clamp(30px, 5vw, 45px);
+
+    font-weight: normal;
+
+    color: #ffffff;
+
+    line-height: 1.3;
+
+    margin-bottom: 25px;
+}
+
+.love-letter-card > p {
+
+    color: #ead1dd;
+
+    font-size: 18px;
+
+    line-height: 2;
+
+}
+
+.love-letter-card strong {
+
+    color: #ffd0e2;
+}
+
+/* =================================
+   DIVIDER
+================================= */
+
+.card-divider {
+
+    margin: 35px 0;
+
+    color: #e98caf;
+
+    font-size: 18px;
+
+    letter-spacing: 3px;
+
+    opacity: 0.8;
+}
+
+/* =================================
+   LITTLE POEM
+================================= */
+
+.little-poem {
+
+    margin: 40px 0;
+
+    padding: 30px;
+
+    border-radius: 25px;
+
+    background:
+        rgba(255, 90, 150, 0.06);
+
+    border-left:
+        3px solid
+        #e98caf;
+
+    border-right:
+        1px solid
+        rgba(255, 150, 200, 0.08);
+}
+
+.little-poem p {
+
+    color: #ffc5d9 !important;
+
+    font-size: 19px !important;
+
+    line-height: 1.9 !important;
+
+    font-style: italic;
+}
+
+/* =================================
+   THANK YOU MESSAGE
+================================= */
+
+.thank-you-message {
+
+    margin-top: 40px;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    color: #eacbd9;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+}
+
+.thank-you-message span {
+
+    color: #ffb4d0;
+
+    font-size: 25px;
+
+}
+
+/* =================================
+   FINAL QUOTE
+================================= */
+
+.final-quote {
+
+    margin: 70px auto 0;
+
+    max-width: 700px;
+
+    padding: 45px 35px;
+
+    border-radius: 30px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255, 90, 150, 0.12),
+            transparent 65%
+        );
+}
+
+.quote-heart {
+
+    font-size: 45px;
+
+    margin-bottom: 20px;
+
+    animation:
+        finalHeartbeat
+        2.5s
+        ease-in-out
+        infinite;
+}
+
+.final-quote p {
+
+    font-size: 22px;
+
+    line-height: 2;
+
+    color: #eacdda;
+
+    font-style: italic;
+}
+
+.final-quote strong {
+
+    color: #ffffff;
+}
+
+/* =================================
+   LAST MESSAGE
+================================= */
+
+.last-message {
+
+    margin-top: 70px;
+
+    padding: 50px 35px;
+
+    border-radius: 30px;
+
+    border:
+        1px solid
+        rgba(255, 160, 200, 0.12);
+
+    background:
+        rgba(255, 255, 255, 0.035);
+}
+
+.last-small {
+
+    font-size: 11px !important;
+
+    letter-spacing: 4px;
+
+    color: #e98caf !important;
+
+    margin-bottom: 15px !important;
+}
+
+.last-message h2 {
+
+    font-size: clamp(30px, 5vw, 45px);
+
+    font-weight: normal;
+
+    margin-bottom: 25px;
+
+    color: #ffffff;
+}
+
+.last-message > p {
+
+    font-size: 18px;
+
+    line-height: 2;
+
+    color: #e4cbd8;
+}
+
+.signature {
+
+    margin-top: 35px;
+
+    color: #dcbfcd;
+
+    font-style: italic;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+.signature strong {
+
+    color: #ffb4d0;
+
+    font-size: 28px;
+
+    font-style: normal;
+}
+
+/* =================================
+   STORY ENDING
+================================= */
+
+.story-ending {
+
+    margin-top: 100px;
+
+    padding-bottom: 50px;
+}
+
+.ending-line {
+
+    width: 100px;
+
+    height: 1px;
+
+    margin: 0 auto 35px;
+
+    background:
+        rgba(255, 170, 205, 0.4);
+}
+
+.story-ending p {
+
+    font-size: 17px;
+
+    line-height: 2;
+
+    color: #dcbfcd;
+
+    margin-bottom: 5px;
+}
+
+.big-heart {
+
+    font-size: 80px;
+
+    margin: 30px 0 15px;
+
+    animation:
+        finalHeartbeat
+        2s
+        ease-in-out
+        infinite;
+
+    filter:
+        drop-shadow(
+            0 0 30px
+            rgba(255, 60, 140, 0.7)
+        );
+}
+
+.story-ending h2 {
+
+    font-size: clamp(32px, 6vw, 55px);
+
+    font-weight: normal;
+
+    color: #ffffff;
+
+    margin-bottom: 20px;
+}
+
+.forever-line {
+
+    color: #e98caf !important;
+
+    font-size: 15px !important;
+
+    font-style: italic;
+}
+
+/* =================================
+   FLOATING HEARTS
+================================= */
+
+.final-hearts span {
+
+    position: absolute;
+
+    bottom: -50px;
+
+    font-size: 25px;
+
+    opacity: 0;
+
+    animation:
+        finalFloat
+        12s
+        linear
+        infinite;
+}
+
+.final-hearts span:nth-child(1) {
+    left: 10%;
+    animation-delay: 1s;
+}
+
+.final-hearts span:nth-child(2) {
+    left: 25%;
+    animation-delay: 4s;
+}
+
+.final-hearts span:nth-child(3) {
+    left: 45%;
+    animation-delay: 2s;
+}
+
+.final-hearts span:nth-child(4) {
+    left: 65%;
+    animation-delay: 6s;
+}
+
+.final-hearts span:nth-child(5) {
+    left: 80%;
+    animation-delay: 3s;
+}
+
+.final-hearts span:nth-child(6) {
+    left: 90%;
+    animation-delay: 8s;
+}
+
+/* =================================
+   ANIMATIONS
+================================= */
+
+@keyframes finalHeartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+
+}
+
+@keyframes finalFloat {
+
+    0% {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 0;
+
+    }
+
+    10% {
+        opacity: 0.6;
+    }
+
+    90% {
+        opacity: 0.4;
+    }
+
+    100% {
+
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+
+        opacity: 0;
+
+    }
+
+}
+
+/* =================================
+   FINAL MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+    .final-section {
+        padding: 70px 15px;
+    }
+
+    .final-label {
+        font-size: 10px;
+
+        letter-spacing: 3px;
+    }
+
+    .final-intro {
+        font-size: 17px;
+    }
+
+    .love-letter-card {
+        padding: 45px 22px;
+
+        border-radius: 28px;
+    }
+
+    .love-letter-card h2 {
+        font-size: 30px;
+    }
+
+    .love-letter-card > p {
+        font-size: 16px;
+
+        line-height: 1.9;
+    }
+
+    .little-poem {
+        padding: 22px 18px;
+    }
+
+    .little-poem p {
+        font-size: 17px !important;
+    }
+
+    .final-quote {
+        padding: 35px 20px;
+    }
+
+    .final-quote p {
+        font-size: 18px;
+    }
+
+    .last-message {
+        padding: 40px 20px;
+    }
+
+    .last-message > p {
+        font-size: 16px;
+    }
+
+    .story-ending {
+        margin-top: 70px;
+    }
+
+}
+
+/* =================================
+   EXTRA MOBILE TREE SAFETY
+================================= */
+
+@media (max-width: 600px) {
+    .memory-tree {
+        width: min(100%, 500px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .branch {
+        max-width: 42%;
+    }
+
+    .tree-ending {
+        padding: 0 5px;
+    }
+}
+
+/* =================================
+   EXTRA SMALL PHONES
+================================= */
+
+@media (max-width: 380px) {
+    .music-button {
+        top: 14px;
+        right: 14px;
+        width: 46px;
+        height: 46px;
+        font-size: 19px;
+    }
+
+    .hero-content {
+        padding: 25px 18px;
+    }
+
+    .story-card {
+        padding: 22px 18px;
+    }
+
+    .reason-card {
+        padding: 26px 18px;
+    }
+
+    .love-letter-card {
+        padding: 38px 18px;
+    }
+
+    .memory-tree {
+        height: 520px;
+    }
+}
